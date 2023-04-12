@@ -1,0 +1,15 @@
+C:\Users\mirza\Desktop\reactjs\C---Eindopdracht-Spotify\Spotify\Spotify\bin\Debug\net6.0\Spotify.exe
+C:\Users\mirza\Desktop\reactjs\C---Eindopdracht-Spotify\Spotify\Spotify\bin\Debug\net6.0\Spotify.deps.json
+C:\Users\mirza\Desktop\reactjs\C---Eindopdracht-Spotify\Spotify\Spotify\bin\Debug\net6.0\Spotify.runtimeconfig.json
+C:\Users\mirza\Desktop\reactjs\C---Eindopdracht-Spotify\Spotify\Spotify\bin\Debug\net6.0\Spotify.dll
+C:\Users\mirza\Desktop\reactjs\C---Eindopdracht-Spotify\Spotify\Spotify\bin\Debug\net6.0\Spotify.pdb
+C:\Users\mirza\Desktop\reactjs\C---Eindopdracht-Spotify\Spotify\Spotify\obj\Debug\net6.0\Spotify.csproj.AssemblyReference.cache
+C:\Users\mirza\Desktop\reactjs\C---Eindopdracht-Spotify\Spotify\Spotify\obj\Debug\net6.0\Spotify.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\mirza\Desktop\reactjs\C---Eindopdracht-Spotify\Spotify\Spotify\obj\Debug\net6.0\Spotify.AssemblyInfoInputs.cache
+C:\Users\mirza\Desktop\reactjs\C---Eindopdracht-Spotify\Spotify\Spotify\obj\Debug\net6.0\Spotify.AssemblyInfo.cs
+C:\Users\mirza\Desktop\reactjs\C---Eindopdracht-Spotify\Spotify\Spotify\obj\Debug\net6.0\Spotify.csproj.CoreCompileInputs.cache
+C:\Users\mirza\Desktop\reactjs\C---Eindopdracht-Spotify\Spotify\Spotify\obj\Debug\net6.0\Spotify.dll
+C:\Users\mirza\Desktop\reactjs\C---Eindopdracht-Spotify\Spotify\Spotify\obj\Debug\net6.0\refint\Spotify.dll
+C:\Users\mirza\Desktop\reactjs\C---Eindopdracht-Spotify\Spotify\Spotify\obj\Debug\net6.0\Spotify.pdb
+C:\Users\mirza\Desktop\reactjs\C---Eindopdracht-Spotify\Spotify\Spotify\obj\Debug\net6.0\Spotify.genruntimeconfig.cache
+C:\Users\mirza\Desktop\reactjs\C---Eindopdracht-Spotify\Spotify\Spotify\obj\Debug\net6.0\ref\Spotify.dll
