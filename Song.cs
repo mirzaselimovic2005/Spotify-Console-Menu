@@ -19,6 +19,16 @@ namespace Spotify
             Duration = duration;
             Genre = genre;
         }
+
+
+        public void Play() {
+            Console.WriteLine($"Afspelend {Title} door {Artist} ({Duration})");
+        }
+
+
+
     }
+
+
 
 }

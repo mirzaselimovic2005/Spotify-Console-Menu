@@ -11,12 +11,14 @@ namespace Spotify
         public string Name { get; set; }
         public List<Playlist> Playlists { get; set; }
         public List<Person> Friends { get; set; }
+        public List<Album> Albums { get; set; }
 
         public Person(string name)
         {
             Name = name;
             Playlists = new List<Playlist>();
             Friends = new List<Person>();
+            Albums = new List<Album>();
         }
 
         private List<Person> friends = new List<Person>();
@@ -38,7 +40,7 @@ namespace Spotify
 
         public void ViewFriends()
         {
-            Console.WriteLine($"Friends of {Name}:");
+            Console.WriteLine($"Vrienden van {Name}:");
             foreach (var friend in Friends)
             {
                 Console.WriteLine($"- {friend.Name}");
@@ -69,5 +71,32 @@ namespace Spotify
         {
             playlist.RemoveSong(song);
         }
+
+        public void AddAlbum(Album album) {
+            Albums.Add(album);
+        }
+
+        public List<Song> GetSameSongs() {
+            List<Song> matchingSongs = new List<Song>();
+            List<Playlist> friendPlaylists = Friends.SelectMany(friend => friend.GetPlaylists()).ToList();
+
+            foreach (Song song in Playlists.SelectMany(playlist => playlist.GetSongs())) {
+                bool songInAllPlaylists = true;
+
+                foreach (Playlist friendPlaylist in friendPlaylists) {
+                    if (!friendPlaylist.Songs.Contains(song)) {
+                        songInAllPlaylists = false;
+                        break;
+                    }
+                }
+
+                if (songInAllPlaylists && !matchingSongs.Contains(song)) {
+                    matchingSongs.Add(song);
+                }
+            }
+
+            return matchingSongs;
+        }
+
     }
 }

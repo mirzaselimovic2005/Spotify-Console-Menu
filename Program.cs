@@ -10,21 +10,161 @@ namespace Spotify
     {
         static void Main(string[] args)
         {
-            Person currentUser = new Person("UserTestje");
-            // while loop die altijd vraagt wat de user wilt doen
+
+            // Voeg gebruiker toe
+            Person currentUser = new Person("Mirza");
+
+            // Voeg playlist met songs toe
+            Playlist newPlaylist1 = new Playlist();
+            Playlist newPlaylist2 = new Playlist();
+            Playlist newPlaylist3 = new Playlist();
+
+            newPlaylist1.Title = "AFSPEELLIJSTTEST";
+            newPlaylist2.Title = "Afspeellijstje 2";
+            newPlaylist3.Title = "Afspeellijstje 3";
+
+            Song song1 = new Song("leuk", "Artiest 1", TimeSpan.FromMinutes(3.5), "Pop");
+            Song song2 = new Song("testje", "Artiest 2", TimeSpan.FromMinutes(4.0), "Rock");
+            Song song3 = new Song("pik", "Artiest 3", TimeSpan.FromMinutes(1.0), "awddwa");
+            Song song4 = new Song("liedje4", "Artiest 4", TimeSpan.FromMinutes(4.0), "Roawdck");
+            Song song5 = new Song("liedje5", "Artiest 5", TimeSpan.FromMinutes(2.0), "waddaaawdck");
+            Song song6 = new Song("liedje6", "Artiest 6", TimeSpan.FromMinutes(3.0), "esfoawdck");
+
+            newPlaylist1.AddSong(song1);
+            newPlaylist1.AddSong(song2);
+            newPlaylist2.AddSong(song3);
+            newPlaylist2.AddSong(song4);
+            newPlaylist3.AddSong(song5);
+            newPlaylist3.AddSong(song6);
+
+            // voeg playlist aan user toe
+            currentUser.AddPlaylist(newPlaylist1);
+
+            // Voeg albums toe en liedjes aan albums
+            Album album1 = new Album("Mom of 4", "Enja");
+            Album album2 = new Album("Elektriciteits", "Componentje");
+            album1.AddSong(song1);
+            album1.AddSong(song2);
+            currentUser.AddAlbum(album1);
+            currentUser.AddAlbum(album2);
+
+            // Voeg vrienden toe
+            Person friend1 = new Person("Vriend 1");
+            Person friend2 = new Person("Vriend 2");
+            currentUser.AddFriend(friend1);
+            currentUser.AddFriend(friend2);
+
+            friend1.AddPlaylist(newPlaylist1);
+            friend2.AddPlaylist(newPlaylist2);
+
+
+
+            // MAIN WHILE TRUE BEGINT HIER
             while (true)
             {
+                Console.WriteLine($"@MIEP1194390");
                 Console.WriteLine($"Welkom {currentUser.Name}");
                 Console.WriteLine("Wat wil je doen?");
+                Console.WriteLine("0. Beheer albums");
                 Console.WriteLine("1. Beheer afspeellijsten");
                 Console.WriteLine("2. Bekijk vrienden");
                 Console.WriteLine("3. Verlaten");
 
                 int keuze = Convert.ToInt32(Console.ReadLine());
-                // switch case om de keuze te bepalen
-                switch (keuze)
-                {
+                switch (keuze) {
+                    case 0:
+                        Console.Clear();
+                        Console.WriteLine("Wat wil je doen met je albums?");
+                        Console.WriteLine("1. Bekijk albums");
+                        Console.WriteLine("2. Voeg album toe aan afspeellijst");
+                        Console.WriteLine("3. Album verwijderen van playlist");
+                        Console.WriteLine("4. Album afspelen");
+                        Console.WriteLine("5. Shuffle");
+                        Console.WriteLine("6. Terug naar hoofdmenu");
+
+                        int albumkeuze = Convert.ToInt32(Console.ReadLine());
+
+                        switch (albumkeuze) {
+                            case 1:
+                                Console.Clear();
+                                Console.WriteLine("Je hebt de volgende albums:");
+                                foreach (Album album in currentUser.Albums) {
+                                    Console.WriteLine(album.Title);
+                                }
+                                if (currentUser.Albums == null || currentUser.Albums.Count == 0) {
+                                    Console.WriteLine("Je hebt nog geen albums.");
+                                    break;
+                                }
+                                break;
+                            case 2:
+                                Console.Clear();
+                                Console.WriteLine("Voeg album toe aan afspeellijst");
+                                Console.WriteLine("Voer de naam van de afspeellijst in:");
+                                string playlistnaam = Console.ReadLine();
+                                Playlist afspeellijst = currentUser.Playlists.Find(p => p.Title == playlistnaam);
+                                if (afspeellijst != null) {
+                                    Console.WriteLine("Voer de naam van het album in:");
+                                    string albumnaam = Console.ReadLine();
+                                    Album album = currentUser.Albums.Find(a => a.Title == albumnaam);
+                                    if (album != null) {
+                                        afspeellijst.AddAlbum(album);
+                                        Console.WriteLine($"{album.Title} is toegevoegd aan {afspeellijst.Title}.");
+                                    } else {
+                                        Console.WriteLine("Album niet gevonden.");
+                                    }
+                                } else {
+                                    Console.WriteLine("Afspeellijst niet gevonden.");
+                                }
+                                break;
+                            case 3:
+                                Console.Clear();
+                                Console.WriteLine("Album verwijderen van afspeellijst");
+                                Console.WriteLine("Voer de naam van de afspeellijst in:");
+                                string afspeellijstnaam = Console.ReadLine();
+                                Playlist playlist = currentUser.Playlists.Find(p => p.Title == afspeellijstnaam);
+                                if (playlist != null) {
+                                    Console.WriteLine("Voer de naam van het album in:");
+                                    string albumnaam = Console.ReadLine();
+                                    Album album = playlist.Albums.Find(a => a.Title == albumnaam);
+                                    if (album != null) {
+                                        playlist.RemoveAlbum(album);
+                                        Console.WriteLine($"{album.Title} is verwijderd van {playlist.Title}.");
+                                    } else {
+                                        Console.WriteLine("Album niet gevonden.");
+                                    }
+                                } else {
+                                    Console.WriteLine("Afspeellijst niet gevonden.");
+                                }
+                                break;
+                            case 4:
+                                Console.Clear();
+                                Console.WriteLine("Album afspelen");
+                                Console.WriteLine("Voer de naam van het album in:");
+                                string albumName = Console.ReadLine();
+                                Album albumToPlay = currentUser.Albums.Find(a => a.Title == albumName);
+                                if (albumToPlay != null) {
+                                    Console.WriteLine($"Afspeellijst {albumToPlay.Title} wordt afgespeeld...");
+                                } else {
+                                    Console.WriteLine("Album niet gevonden.");
+                                }
+                                break;
+                            case 5:
+                                Console.Clear();
+                                Console.WriteLine("Shuffle albums");
+                                List<Album> shuffledAlbums = currentUser.Albums.OrderBy(a => Guid.NewGuid()).ToList();
+                                Console.WriteLine("De albums zijn geschud:");
+                                foreach (Album album in shuffledAlbums) {
+                                    Console.WriteLine(album.Title);
+                                }
+                                break;
+                            case 6:
+                                Console.Clear();
+                                break;
+                        }
+                        break;
+
                     case 1:
+                        Console.Clear();
                         Console.WriteLine("Wat wil je doen met je afspeellijsten?");
                         Console.WriteLine("1. Bekijk afspeellijsten");
                         Console.WriteLine("2. Voeg afspeellijst toe");
@@ -32,12 +172,16 @@ namespace Spotify
                         Console.WriteLine("4. Nummer toevoegen aan afspeellijst");
                         Console.WriteLine("5. Nummer uit afspeellijst verwijderen");
                         Console.WriteLine("6. Nummer uit afspeellijst afspelen");
+                        Console.WriteLine("7. Shuffle");
+                        Console.WriteLine("8. Terug naar hoofdmenu");
+
 
                         int afspeellijstkeuze = Convert.ToInt32(Console.ReadLine());
 
                         switch (afspeellijstkeuze)
                         {
                             case 1:
+                                Console.Clear();
                                 List<Playlist> playlists = currentUser.GetPlaylists();
                                 Console.WriteLine($"Je hebt {playlists.Count} afspeellijsten:");
                                 foreach (Playlist Playlist in playlists)
@@ -47,15 +191,14 @@ namespace Spotify
                                 break;
 
                             case 2:
+                                Console.Clear();
                                 Console.WriteLine("Voer de naam van de afspeellijst in:");
                                 string playlistName = Console.ReadLine();
-                                Playlist newPlaylist = new Playlist();
-                                newPlaylist.Title = playlistName;
-                                currentUser.AddPlaylist(newPlaylist);
                                 Console.WriteLine($"Afspeellijst '{playlistName}' is toegevoegd.");
                                 break;
 
                             case 3:
+                                Console.Clear();
                                 Console.WriteLine("Voer de naam van de afspeellijst in:");
                                 string playlistToRemove = Console.ReadLine();
                                 List<Playlist> userPlaylists = currentUser.GetPlaylists();
@@ -72,6 +215,7 @@ namespace Spotify
                                 break;
 
                             case 4:
+                                Console.Clear();
                                 Console.WriteLine("Voer de titel van het nummer in:");
                                 string songTitle = Console.ReadLine();
                                 Console.WriteLine("Voer artiest in:");
@@ -98,6 +242,7 @@ namespace Spotify
                                 break;
 
                             case 5:
+                                Console.Clear();
                                 Console.WriteLine("Voer de titel van het nummer in:");
                                 string songTitle2 = Console.ReadLine();
                                 Console.WriteLine("Voer artiest in:");
@@ -129,6 +274,7 @@ namespace Spotify
                                 break;
 
                             case 6:
+                                Console.Clear();
                                 Console.WriteLine("Van welke afspeellijst wil je een liedje afspelen?");
                                 string selectedPlaylistName = Console.ReadLine();
                                 List<Playlist> playlists2 = currentUser.GetPlaylists();
@@ -144,6 +290,10 @@ namespace Spotify
                                 if (selected != null)
                                 {
                                     Console.WriteLine($"Welk nummer wil je afspelen? (1-{selected.Songs.Count})");
+                                    for (int i = 0; i < selected.Songs.Count; i++) {
+                                        Song song = selected.Songs[i];
+                                        Console.WriteLine($"{i + 1}. {song.Title} - {song.Artist}");
+                                    }
                                     int songNumber = Convert.ToInt32(Console.ReadLine());
                                     if (songNumber >= 1 && songNumber <= selected.Songs.Count)
                                     {
@@ -161,22 +311,53 @@ namespace Spotify
                                 }
                                 break;
 
+
+                            case 7:
+                                Console.Clear();
+                                Console.WriteLine("Van welke afspeellijst wil je de liedjes schufflen?");
+                                string selectedPlaylistName2 = Console.ReadLine();
+                                List<Playlist> playlists3 = currentUser.GetPlaylists();
+                                Playlist selected2 = null;
+                                foreach (Playlist playlist3 in playlists3) {
+                                    if (playlist3.Title == selectedPlaylistName2) {
+                                        selected2 = playlist3;
+                                        break;
+                                    }
+                                }
+                                if (selected2 != null) {
+                                    selected2.Shuffle();
+                                    Console.WriteLine($"Liedjes in afspeellijst '{selectedPlaylistName2}' zijn geshuffled.");
+                                }
+                                else {
+                                    Console.WriteLine($"Afspeellijst '{selectedPlaylistName2}' is niet gevonden.");
+                                }
+                                break;  
+
+                            case 8:
+                                Console.Clear();
+                                break;
+
+
+
                             default:
                                 Console.WriteLine("NIET MOGELIJKK!!");
                                 break;
                         }
                         break;
                     case 2:
+                        Console.Clear();
                         Console.WriteLine("1. Vriend toevoegen");
                         Console.WriteLine("2. Vriend verwijderen");
                         Console.WriteLine("3. Vrienden bekijken");
-
+                        Console.WriteLine("4. Afspeellijsten vergelijken van vrienden");
+                        Console.WriteLine("4. Terug naar hoofdmenu");
 
                         int keuze2 = int.Parse(Console.ReadLine());
 
                         switch (keuze2)
                         {
                             case 1:
+                                Console.Clear();
                                 Console.WriteLine("Voer de naam van de vriend in:");
                                 string friendName = Console.ReadLine();
                                 Person newFriend = new Person(friendName);
@@ -193,6 +374,7 @@ namespace Spotify
                                 break;
 
                             case 2:
+                                Console.Clear();
                                 Console.WriteLine("Voer de naam van de vriend in:");
                                 string Friendname2 = Console.ReadLine();
                                 var friendToRemove = currentUser.GetFriends().FirstOrDefault(x => x.Name == Friendname2);
@@ -212,22 +394,48 @@ namespace Spotify
                                 break;
 
                             case 3:
+                                Console.Clear();
                                 List<Person> friends = currentUser.GetFriends();
-                                Console.WriteLine($"You have {friends.Count} friends:");
-                                foreach (Person friend in friends)
-                                {
-                                    Console.WriteLine(friend.Name);
+                                Console.WriteLine($"Je hebt {friends.Count} vrienden:");
+                                foreach (Person friend in friends) {
+                                    Console.WriteLine($"- {friend.Name}:");
+                                    foreach (Playlist playlist in friend.GetPlaylists()) {
+                                        Console.WriteLine($"- {playlist.Title}");
+                                        foreach (Song song in playlist.GetSongs()) {
+                                            Console.WriteLine($"    - {song.Title} by {song.Artist}");
+                                        }
+                                    }
                                 }
+                                break;
+
+                            case 4:
+                                Console.Clear();
+                                List<Song> matchingSongs = currentUser.GetSameSongs();
+
+                                if (matchingSongs.Count == 0) {
+                                    Console.WriteLine("Er komen geen nummers overeen met jouw vrienden hun afspeellijst.");
+                                } else {
+                                    Console.WriteLine("De nummers die overeen komen met de afspeellijst van jouw en je vrienden:");
+                                    foreach (Song song in matchingSongs) {
+                                        Console.WriteLine($"- {song.Title} by {song.Artist}");
+                                    }
+                                }
+                                break;
+
+
+                            case 5:
+                                Console.Clear();
                                 break;
                         }
                         break;
 
 
                     case 3:
-                        Console.WriteLine("jo");
+                        Console.Clear();
                         return;
 
                     default:
+                        Console.Clear();
                         Console.WriteLine("niet mogelijk!!!");
                         break;
                 }

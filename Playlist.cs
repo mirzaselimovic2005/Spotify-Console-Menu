@@ -9,16 +9,23 @@ namespace Spotify
     public class Playlist
     {
         public string Title { get; set; }
-        public List<Song> Songs { get; set; }
         public List<Album> Albums { get; set; }
+        public List<Song> Songs { get; set; }
+        private string name;
 
         public Playlist()
         {
+            this.name = name;
             Songs = new List<Song>();
             Albums = new List<Album>();
         }
 
-    public void AddSong(Song song)
+        public string Name {
+            get { return name; }
+            set { name = value; }
+        }
+
+        public void AddSong(Song song)
         {
             Songs.Add(song);
         }
@@ -28,11 +35,37 @@ namespace Spotify
             Songs.Remove(song);
         }
 
+        public void AddAlbum(Album album) {
+            Albums.Add(album);
+        }
+
+
+        public void RemoveAlbum(Album album) {
+            Albums.Remove(album);
+        }
+
+        public List<Song> GetSongs() {
+            return Songs;
+        }
+
+
+
         public void Play()
         {
             foreach (var song in Songs)
             {
-                Console.WriteLine($"Playing {song.Title} by {song.Artist} ({song.Duration})");
+                Console.WriteLine($"Afspelend {song.Title} door {song.Artist} ({song.Duration})");
+            }
+        }
+
+
+        public void Shuffle() {
+            Random random = new Random();
+            for (int i = 0; i < Songs.Count; i++) {
+                int randomIndex = random.Next(0, Songs.Count);
+                Song temp = Songs[i];
+                Songs[i] = Songs[randomIndex];
+                Songs[randomIndex] = temp;
             }
         }
     }
