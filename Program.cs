@@ -69,7 +69,7 @@ namespace Spotify {
                 Console.WriteLine("2. Bekijk vrienden");
                 Console.WriteLine("3. Verlaten");
 
-                int keuze = Convert.ToInt32(Console.ReadLine());
+               int keuze = Convert.ToInt32(Console.ReadLine());
                 switch (keuze) {
                     case 0:
                         Console.Clear();
@@ -380,13 +380,13 @@ namespace Spotify {
 
                             case 4:
                                 Console.Clear();
-                                List<Song> matchingSongs = currentUser.GetSameSongs();
+                                List<Song> sameSongs = currentUser.GetSameSongs();
 
-                                if (matchingSongs.Count == 0) {
+                                if (sameSongs.Count == 0) {
                                     Console.WriteLine("Er komen geen nummers overeen met jouw vrienden hun afspeellijst.");
                                 } else {
                                     Console.WriteLine("De nummers die overeen komen met de afspeellijst van jouw en je vrienden:");
-                                    foreach (Song song in matchingSongs) {
+                                    foreach (Song song in sameSongs) {
                                         Console.WriteLine($"- {song.Title} by {song.Artist}");
                                     }
                                 }

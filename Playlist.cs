@@ -53,12 +53,12 @@ namespace Spotify {
 
 
         public void Shuffle() {
-            Random random = new Random();
+            Random rand = new Random();
             for (int i = 0; i < Songs.Count; i++) {
-                int randomIndex = random.Next(0, Songs.Count);
+                int randIndex = rand.Next(0, Songs.Count);
                 Song temp = Songs[i];
-                Songs[i] = Songs[randomIndex];
-                Songs[randomIndex] = temp;
+                Songs[i] = Songs[randIndex];
+                Songs[randIndex] = temp;
             }
         }
     }

@@ -32,7 +32,7 @@ namespace Spotify {
             return friends;
         }
 
-        public void ViewFriends() {
+        public void SeeFriends() {
             Console.WriteLine($"Vrienden van {Name}:");
             foreach (var friend in Friends) {
                 Console.WriteLine($"- {friend.Name}");
@@ -64,25 +64,25 @@ namespace Spotify {
         }
 
         public List<Song> GetSameSongs() {
-            List<Song> matchingSongs = new List<Song>();
+            List<Song> sameSongs = new List<Song>();
             List<Playlist> friendPlaylists = Friends.SelectMany(friend => friend.GetPlaylists()).ToList();
 
             foreach (Song song in Playlists.SelectMany(playlist => playlist.GetSongs())) {
-                bool songInAllPlaylists = true;
+                bool songInPL = true;
 
                 foreach (Playlist friendPlaylist in friendPlaylists) {
                     if (!friendPlaylist.Songs.Contains(song)) {
-                        songInAllPlaylists = false;
+                        songInPL = false;
                         break;
                     }
                 }
 
-                if (songInAllPlaylists && !matchingSongs.Contains(song)) {
-                    matchingSongs.Add(song);
+                if (songInPL && !sameSongs.Contains(song)) {
+                    sameSongs.Add(song);
                 }
             }
 
-            return matchingSongs;
+            return sameSongs;
         }
 
     }

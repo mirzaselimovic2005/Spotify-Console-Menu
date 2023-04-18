@@ -29,11 +29,11 @@ namespace Spotify {
         }
 
         public void Shuffle() {
-            Random rng = new Random();
+            Random rand2 = new Random();
             int n = Songs.Count;
             while (n > 1) {
                 n--;
-                int k = rng.Next(n + 1);
+                int k = rand2.Next(n + 1);
                 Song value = Songs[k];
                 Songs[k] = Songs[n];
                 Songs[n] = value;
