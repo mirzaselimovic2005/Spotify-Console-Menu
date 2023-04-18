@@ -63,8 +63,7 @@ namespace Spotify {
             // MAIN WHILE TRUE BEGINT HIER
             while (true) {
                 Console.WriteLine($"@MIEP1194390 - https://github.com/Miep1194390/Spotify-Console-Menu");
-                Console.WriteLine($"Welkom {currentUser.Name}");
-                Console.WriteLine("Wat wil je doen?");
+                Console.WriteLine($"Welkom {currentUser.Name}!");
                 Console.WriteLine("0. Beheer albums");
                 Console.WriteLine("1. Beheer afspeellijsten");
                 Console.WriteLine("2. Bekijk vrienden");
@@ -74,7 +73,7 @@ namespace Spotify {
                 switch (keuze) {
                     case 0:
                         Console.Clear();
-                        Console.WriteLine("Wat wil je doen met je albums?");
+                        Console.WriteLine("Album menu");
                         Console.WriteLine("1. Bekijk albums");
                         Console.WriteLine("2. Voeg album toe aan afspeellijst");
                         Console.WriteLine("3. Album verwijderen van playlist");
@@ -164,7 +163,7 @@ namespace Spotify {
 
                     case 1:
                         Console.Clear();
-                        Console.WriteLine("Wat wil je doen met je afspeellijsten?");
+                        Console.WriteLine("Afspeellijst menu");
                         Console.WriteLine("1. Bekijk afspeellijsten");
                         Console.WriteLine("2. Voeg afspeellijst toe");
                         Console.WriteLine("3. Afspeellijst verwijderen");
@@ -322,6 +321,7 @@ namespace Spotify {
                         break;
                     case 2:
                         Console.Clear();
+                        Console.WriteLine("Vrienden menu");
                         Console.WriteLine("1. Vriend toevoegen");
                         Console.WriteLine("2. Vriend verwijderen");
                         Console.WriteLine("3. Vrienden bekijken");
