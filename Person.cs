@@ -43,6 +43,13 @@ namespace Spotify {
             return Playlists;
         }
 
+        public void SeePlaylists() {
+            Console.WriteLine($"Playlists van {Name}:");
+            foreach (var playlist in Playlists) {
+                Console.WriteLine($"- {playlist.Name}");
+            }
+        }
+
         public void AddPlaylist(Playlist playlist) {
             Playlists.Add(playlist);
         }

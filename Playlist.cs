@@ -11,8 +11,8 @@ namespace Spotify {
         public List<Song> Songs { get; set; }
         private string name;
 
-        public Playlist() {
-            this.name = name;
+        public Playlist(string name) {
+            Name = name;
             Songs = new List<Song>();
             Albums = new List<Album>();
         }
